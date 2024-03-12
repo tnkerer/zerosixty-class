@@ -72,3 +72,56 @@ Não podemos nos esquecer de adicionar a biblioteca `dotenv` ao nosso projeto:
 ```bash
 npm i dotenv
 ```
+
+Por fim, as nossas variáveis locais devem se parecer com algo da seguinte forma:
+
+```bash
+PRIVATE_KEY=874b9960f51ee07870d8b3e27b4ab378b548aea28ae04dce8ba4bca50befd065
+RPC_URL=https://eth-sepolia.blastapi.io/59e7464f-491b-4bc3-af57-7708c6c846a1
+```
+
+E por fim configuramos nosso arquivo `hardhat.config.js` com as nossas novas variáveis locais para a rede `sepolia`:
+
+```js
+require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config({ path: ".env" });
+
+const RPC_URL = process.env.RPC_URL;
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
+
+/** @type import('hardhat/config').HardhatUserConfig */
+module.exports = {
+  solidity: "0.8.24",
+  networks: {
+    sepolia: {
+      url: RPC_URL,
+      accounts: [PRIVATE_KEY],
+    }
+  }
+};
+```
+
+### Contrato PIZZA!
+
+Durante a aula 2, programamos juntos os seguintes arquivos:
+
+`contracts/Pizza.sol`<br>
+`scripts/deploy.js`<br>
+
+São, na ordem, o contrato onde podemos comer pedaços da nossa pizza criptográfica na blockchain, e assim que ela acaba, podemos cozinhar uma nova pizza totalmente nova! 🍕😋 E o script que faz a implantação do código fonte do nosso contrato na blockchain.
+
+Para compilar o `Bytecode` desse contrato, vamos executar o comando:
+
+```bash
+npx hardhat compile
+```
+
+E com o contrato compilado com sucesso, podemos proseguir com a implantação na blockchain:
+
+```bash
+npx hardhat run scripts/deploy.js --network sepolia
+```
+
+O contrato implantado nessa aula está disponível no link:
+
+https://sepolia.etherscan.io/address/0x49065fd669cc1ca3339f46210743839fa407fee5
