@@ -50,3 +50,25 @@ Nosso projeto vai ser inicializado. Código de exemplo será criado nos diretór
 `scripts/deploy.js`<br>
 `test/Lock.js`<br>
 
+Criamos um arquivo `.env` para armazenar as variáveis locais do nosso projeto.
+
+```bash
+touch .env
+```
+
+Esse arquivo deve conter duas variáveis:
+
+```bash
+PRIVATE_KEY=
+RPC_URL=
+```
+
+Uma forma fácil de se conseguir uma chave privada `PRIVATE_KEY` é importando de uma carteira web3, a recomendação mais prática é a [metamask.io](https://metamask.io/).
+
+Um provedor de `RPC_URL` bem prático é o [blastapi.io](https://blastapi.io/).
+
+Não podemos nos esquecer de adicionar a biblioteca `dotenv` ao nosso projeto:
+
+```bash
+npm i dotenv
+```
