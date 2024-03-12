@@ -46,7 +46,7 @@ Por fim, também instalados o pacote `@nomicfoundation/hardhat-toolbox`:
 
 Nosso projeto vai ser inicializado. Código de exemplo será criado nos diretórios `contracts`, `scripts` e `test`. O contrato de exemplo é um bom ponto de partida para começar a entender como um contrato inteligente funciona, porém, no nosso caso vamos deletar os arquivos:
 
-`contracts/Lock.sol`
-`scripts/deploy.js`
-`test/Lock.js`
+`contracts/Lock.sol`<br>
+`scripts/deploy.js`<br>
+`test/Lock.js`<br>
 
