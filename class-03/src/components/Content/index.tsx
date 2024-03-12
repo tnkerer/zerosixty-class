@@ -4,20 +4,24 @@ import { Web3ModalContext } from "../../context/Web3ModalContext";
 
 const Content: React.FC = () => {
 
-  const { account, chainId, web3 } = React.useContext(Web3ModalContext);
-
+  const { account , chainId, web3 } = React.useContext(Web3ModalContext);
 
   const [currentChainId, setCurrentChainId] = useState("");
   const [walletStatus, setWalletStatus] = useState(false);
   const [myBalance, setMyBalance] = useState("");
 
-  const getBalance = async () => {
-    if(web3 && account){
-      const balance = await web3?.eth.getBalance(account);
-      // balance => 18 decimal 
-      setMyBalance(web3?.utils.fromWei(balance, "ether"));
+  const fetchBalance = async () => {
+    if(account && chainId && web3) {
+      const balance = await web3.eth.getBalance(account);
+      setMyBalance(web3.utils.fromWei(balance, "ether"));
+    } else {setMyBalance("")}
+  }
+
+  const getWalletStatus = () => {
+    if(account && chainId) {
+      setWalletStatus(true);
     } else {
-      setMyBalance("");
+      setWalletStatus(false);
     }
   }
 
@@ -29,19 +33,11 @@ const Content: React.FC = () => {
     }
   }
 
-  const getWalletStatus = () => {
-    if(account && chainId){
-      setWalletStatus(true);
-    } else {
-      setWalletStatus(false);
-    }
-  }
-
   React.useEffect(() => {
-    getChainId();
     getWalletStatus();
-    getBalance();
-  }, [account, chainId, web3]);
+    getChainId();
+    fetchBalance();
+  }, [account, chainId, web3])
 
   return (
     <section className={styles.content}>

@@ -10,7 +10,7 @@ contract Pizza {
     
     constructor(uint _pizzaSize) {
         PIZZA_SIZE = _pizzaSize;
-        slices = PIZZA_SIZE; // Por que existe essa passo extra? Sugestões?
+        slices = PIZZA_SIZE;
     }
 
     function eatSlice() public {

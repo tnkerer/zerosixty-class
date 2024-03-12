@@ -7,10 +7,12 @@ import Web3ModalProvider from "../context/Web3ModalContext";
 const App: React.FC = () => {
   return (
       <div className={styles.app}>
-      <Web3ModalProvider>
-        <Header />
-        <Content />
-      </Web3ModalProvider>
+        <>
+        <Web3ModalProvider>
+          <Header />
+          <Content />
+        </Web3ModalProvider>
+        </>
       </div>
   );
 };
