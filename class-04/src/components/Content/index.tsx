@@ -36,7 +36,7 @@ const Content: React.FC = () => {
 
   const getSliceCount = async () => {
     if(pizzaWrapper) {
-      const slices = await pizzaWrapper.getSlices();
+      const slices = await pizzaWrapper.getSlices()
       setAvailablePizza(Number(slices));
     }
   }

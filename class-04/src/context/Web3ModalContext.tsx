@@ -4,6 +4,7 @@ import Web3Modal from "web3modal";
 import Web3 from "web3";
 import PizzaWrapper from '../blockchain/PizzaWrapper';
 
+
 // Create a web3Context interface globally
 
 interface IWebModalContext {
@@ -23,7 +24,7 @@ export const Web3ModalContext = createContext<IWebModalContext>({
     disconnect: () => {},
     account: null,
     chainId: null,
-    pizzaWrapper: null,
+    pizzaWrapper: null
   });
 
 // Create a web3modalprovider
@@ -34,7 +35,7 @@ const Web3ModalProvider = ({ children }) => {
     const [account, setAccount] = useState<string | null>(null);
     const [chainId, setChainId] = useState<number | null>(null);
     const [pizzaWrapper, setPizzaWrapper] = useState<PizzaWrapper | null>(null);
-  
+
     // When a injected provider is detected, we initialize our Web3Modal instance
   
     useEffect(() => {
@@ -141,11 +142,11 @@ const Web3ModalProvider = ({ children }) => {
       }, [web3, web3Modal, resetWeb3]);
 
       useEffect(() => {
-          if(web3 && account && chainId) {
-              setPizzaWrapper(new PizzaWrapper(web3, chainId, account));
-          } else {
-              setPizzaWrapper(null);
-          }
+        if(web3 && account && chainId) {
+          setPizzaWrapper(new PizzaWrapper(web3, chainId, account));
+        } else {
+          setPizzaWrapper(null)
+        }
       }, [web3, account, chainId]);
   
       return (
